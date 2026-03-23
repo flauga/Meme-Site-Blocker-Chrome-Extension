@@ -3,33 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Site Blocker Extension</title>
+  <title>MemeLord Site Blocker</title>
   <link rel="stylesheet" type="text/css" href="./popup.css" media="screen" />
-  <link href="https://fonts.googleapis.com/css2?family=YourSelectedFont&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-/></head>
+</head>
 <body>
-  <div id="app">
-    <div id="header-container">
-    <section class="header">
-      <h1>Site Blocker Extension</h1>
-    </section>
-  </div>
-  <div id="content-container">
-    <section class="add-block">
-      <h2>Add to Block List</h2>
-      <div class="main">
-        <input type="text" id="websiteInput"><button class="block" id="blockButton">Block</button>
+  <div id="mlp-app">
+
+    <!-- Title bar -->
+    <div id="mlp-titlebar">
+      <div id="mlp-titlebar-left">
+        <span id="mlp-titlebar-icon">🦈</span>
+        <span id="mlp-titlebar-text">MemeLord Site Blocker</span>
       </div>
-    </section>
-    <section class="remove-block">
-      <h2>Blocked Websites</h2>
-      <div class="main">
+      <div id="mlp-titlebar-btns">
+        <button class="mlp-wbtn" title="Minimize">_</button>
+        <button class="mlp-wbtn" title="Maximize">□</button>
+        <button class="mlp-wbtn" title="Close">✕</button>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div id="mlp-body">
+
+      <!-- Add site -->
+      <fieldset class="mlp-group">
+        <legend>Add to Block List</legend>
+        <div class="mlp-row">
+          <input type="text" id="websiteInput" placeholder="e.g. youtube.com" />
+          <button class="mlp-btn-primary" id="blockButton">Block</button>
+        </div>
+      </fieldset>
+
+      <!-- Blocked sites list -->
+      <fieldset class="mlp-group">
+        <legend>Blocked Websites</legend>
         <div id="blockedWebsitesDiv"></div>
-      </div>
-    </section>
+      </fieldset>
+
+      <!-- API Key -->
+      <fieldset class="mlp-group">
+        <legend>MemeLord API Key</legend>
+        <div class="mlp-row">
+          <input type="password" id="apiKeyInput" placeholder="mlord_live_…" />
+          <button class="mlp-btn-primary" id="saveApiKeyBtn">Save</button>
+        </div>
+        <p id="apiKeyStatus"></p>
+      </fieldset>
+
+      <!-- Global prompt -->
+      <fieldset class="mlp-group">
+        <legend>Global Meme Prompt</legend>
+        <p class="mlp-hint">
+          Fallback prompt for sites without a per-site prompt.<br>
+          Use <code>{site}</code> where you want the domain inserted.
+        </p>
+        <textarea
+          id="promptTemplateInput"
+          rows="3"
+          placeholder="e.g. Shark Tank USA meme where the sharks react to someone wasting time on {site}…"
+        ></textarea>
+        <div class="mlp-row mlp-row-gap">
+          <button class="mlp-btn-primary" id="savePromptBtn">Save</button>
+          <button class="mlp-btn-secondary" id="resetPromptBtn">Reset to Default</button>
+        </div>
+        <p id="promptStatus"></p>
+      </fieldset>
+
+    </div><!-- /body -->
   </div>
+
   <script src="./popup.js"></script>
 </body>
 </html>
